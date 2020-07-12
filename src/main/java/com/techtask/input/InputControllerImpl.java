@@ -12,7 +12,7 @@ import static java.util.Objects.isNull;
 
 public class InputControllerImpl implements InputController {
     private static final String EXIT_COMMAND = "X";
-    private Console console = System.console();
+    private final Console console = System.console();
     private BufferedReader reader;
 
     public String handleInput(String[] args) {

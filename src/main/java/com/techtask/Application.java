@@ -5,10 +5,8 @@ import com.techtask.counter.RowCounterServiceFactory;
 import com.techtask.input.InputController;
 import com.techtask.input.InputControllerImpl;
 
-import java.io.IOException;
-
 public class Application {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         InputController inputHandler = new InputControllerImpl();
         String inputPath = inputHandler.handleInput(args);
         RowCounterService rowCounterService = RowCounterServiceFactory.newRowCounterService(inputPath);

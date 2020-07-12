@@ -14,8 +14,8 @@ import static java.util.stream.Collectors.toMap;
 
 public class DirectoryRowCounterService implements RowCounterService {
 
-    RowCounter rowCounter = new RowCounter();
-    StringBuilder sb = new StringBuilder();
+    private final RowCounter rowCounter = new RowCounter();
+    private final StringBuilder sb = new StringBuilder();
 
     @Override
     public String countRows(String directoryName) {
@@ -46,7 +46,7 @@ public class DirectoryRowCounterService implements RowCounterService {
     }
 
     private void formatCountedData(Map.Entry<String, Map<String, Integer>> entry) {
-        sb.append(entry.getKey())
+        sb.append(Path.of(entry.getKey()).getFileName())
                 .append(' ')
                 .append(':')
                 .append(' ')

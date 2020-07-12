@@ -17,8 +17,8 @@ class RowCounterTest {
     }
 
     @Test
-    @DisplayName("Class with multiple comments should return 8")
-    public void countRows_returned8() throws Exception {
+    @DisplayName("Should return 8 rows for mixed types of comments")
+    public void countRows_returned8() {
         String className = "src/test/resources/TestClass.java";
         Integer expected = 8;
 
@@ -28,8 +28,8 @@ class RowCounterTest {
     }
 
     @Test
-    @DisplayName("Class with one multiple comment should return 6")
-    public void countRows_returned6() throws Exception {
+    @DisplayName("Should return 6 rows for multiline comment")
+    public void countRows_multilineComment() {
         String className = "src/test/resources/MultilineComment.java";
         Integer expected = 6;
 
@@ -39,8 +39,8 @@ class RowCounterTest {
     }
 
     @Test
-    @DisplayName("Class with one single line comments should return 5")
-    public void countRows_returned5() throws Exception {
+    @DisplayName("Should return 5 rows for single line comment")
+    public void countRows_returned5() {
         String className = "src/test/resources/SingleLineComment.java";
         Integer expected = 5;
 
@@ -48,9 +48,10 @@ class RowCounterTest {
 
         assertThat(actual).isEqualTo(expected);
     }
+
     @Test
-    @DisplayName("Class with multiple comments and corner cases should return 10")
-    public void countRows_returned_10() throws Exception {
+    @DisplayName("Should return 10 for corner cases ")
+    public void countRows_returned_10() {
         String className = "src/test/resources/CornerCases.java";
         Integer expected = 10;
 
