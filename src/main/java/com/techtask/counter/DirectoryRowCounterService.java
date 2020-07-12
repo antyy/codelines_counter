@@ -85,11 +85,11 @@ public class DirectoryRowCounterService implements RowCounterService {
                 .append(' ');
     }
 
-    public static void main(String[] args) throws Exception {
-        Map<String, List<File>> files = Files.walk(Paths.get("src/main/resources/root"))
-                .map(Path::toFile)
-                .filter(File::isFile)
-                .collect(groupingBy(File::getParent, toList()));
-        files.entrySet().stream().forEach(System.out::println);
-    }
+//    public static void main(String[] args) throws Exception {
+//        Map<String, List<File>> files = Files.walk(Paths.get("src/main/resources/root"))
+//                .map(Path::toFile)
+//                .filter(File::isFile)
+//                .collect(groupingBy(File::getParent, toList()));
+//        files.entrySet().stream().forEach(System.out::println);
+//    }
 }

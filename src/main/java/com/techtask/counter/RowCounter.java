@@ -15,7 +15,8 @@ public class RowCounter {
                     .map(String::trim)
                     .forEach(src::consumeCurrentRow);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Failed to count rows for " + f);
+            return 0;
         }
 
         return src.numberOfRows;
@@ -29,53 +30,50 @@ public class RowCounter {
         private int numberOfRows;
         private boolean openComment;
         private static final String OPENING_COMMENT = "/*";
-        private static final String CLOSING_COMMENT = "/*";
+        private static final String CLOSING_COMMENT = "*/";
+        private static final String ONE_LINE_COMMENT = "//";
 
 
         public void consumeCurrentRow(String row) {
-            System.out.println("Current row = " + row);
             if (row.isEmpty()) {
                 return;
             }
             if (openComment) {
-                if (row.contains("*/")) {
+                if (row.contains(CLOSING_COMMENT)) {
                     openComment = false;
+                    row = row.substring(row.indexOf(CLOSING_COMMENT) + CLOSING_COMMENT.length()).trim();
+                    handleClosingComment(row);
                 }
                 return;
             }
 
-            if (row.startsWith("//")) {
+            if (row.startsWith(ONE_LINE_COMMENT)) {
                 return;
             }
-            if (row.startsWith("/*")) {
-                if (row.contains("*/")) {
-                    row = row.substring(row.indexOf(OPENING_COMMENT), row.indexOf(CLOSING_COMMENT)).trim();
-                    return;
+
+            if (row.startsWith(OPENING_COMMENT)) {
+                if (row.contains(CLOSING_COMMENT)) {
+                    handleClosingComment(row);
+                } else {
+                    openComment = true;
                 }
-                openComment = true;
                 return;
             }
             numberOfRows++;
         }
 
-        private void resolveStringComment(String row) {
-            if (row.contains("*/")) {
-                while (row.startsWith("/*") && row.contains("*/")) {
-                    row = row.substring(row.indexOf(OPENING_COMMENT), row.indexOf(CLOSING_COMMENT)).trim();
-                }
-                if (row.isEmpty() || row.startsWith("//")) {
-                    return;
-                }
-
+        private void handleClosingComment(String row) {
+            while (row.startsWith(OPENING_COMMENT) && row.contains(CLOSING_COMMENT)) {
+                row = row.substring(row.indexOf(CLOSING_COMMENT) + CLOSING_COMMENT.length()).trim();
+            }
+            if (row.isEmpty() || row.startsWith("//")) {
                 return;
             }
+            if (row.startsWith(OPENING_COMMENT)) {
+                openComment = true;
+                return;
+            }
+            numberOfRows++;
         }
-
-    }
-
-    public static void main(String[] args) {
-        String row = "/*dfgdsf dfg dsfg sd*/  /**fgdfgdg df */  */ ";
-        row = row.substring(row.indexOf("/*"), row.indexOf("*/")).trim();
-        System.out.println(row);
     }
 }
