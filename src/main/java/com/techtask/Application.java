@@ -1,21 +1,18 @@
 package com.techtask;
 
 import com.techtask.counter.RowCounterService;
+import com.techtask.counter.RowCounterServiceFactory;
 import com.techtask.input.InputController;
 import com.techtask.input.InputControllerImpl;
 
-import static com.techtask.counter.RowCounterServiceFactory.newRowCounterService;
+import java.io.IOException;
 
 public class Application {
-    private final InputController inputController = new InputControllerImpl();
-
-    public void run(String[] args) {
-        String fileName = inputController.handleInput(args);
-
-        RowCounterService stringCounter = newRowCounterService(fileName);
-
-        stringCounter.countRows();
-        stringCounter.printResultToConsole();
+    public static void main(String[] args) throws IOException {
+        InputController inputHandler = new InputControllerImpl();
+        String inputPath = inputHandler.handleInput(args);
+        RowCounterService rowCounterService = RowCounterServiceFactory.newRowCounterService(inputPath);
+        String result = rowCounterService.countRows(inputPath);
+        System.out.println(result);
     }
-
 }

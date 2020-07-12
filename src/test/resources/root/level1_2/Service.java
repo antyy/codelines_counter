@@ -12,7 +12,7 @@ import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 
-public class DirectoryRowCounterService implements RowCounterService {
+public class Service implements RowCounterService {
 
     RowCounter rowCounter = new RowCounter();
     StringBuilder sb = new StringBuilder();

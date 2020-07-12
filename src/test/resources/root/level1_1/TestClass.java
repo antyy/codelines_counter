@@ -10,7 +10,12 @@ public class TestClass {
         /*   */
         //dfgsdfg
         ArrayList<String> al = new ArrayList<>(); //dsfgsdfg;
-        System.out.println("//dfds/dsfs");
-        ///dsfsdkflksjdflaksf
+        System.out.println("//dfds/dsfs");//
+        ///dsfsdkflksjdflaksf\
+        /**  fgf **/
+
+        /*sdas
+        sadasd
+         */
     }
 }

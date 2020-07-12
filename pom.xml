@@ -43,7 +43,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.techtask.ApplicationRunner</mainClass>
+                            <mainClass>com.techtask.Application</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

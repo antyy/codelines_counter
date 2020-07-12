@@ -50,7 +50,7 @@ class RowCounterTest {
     }
     @Test
     @DisplayName("Class with multiple comments and corner cases should return 10")
-    public void countRows_returned9() throws Exception {
+    public void countRows_returned_10() throws Exception {
         String className = "src/test/resources/CornerCases.java";
         Integer expected = 10;
 

@@ -3,24 +3,12 @@ package com.techtask.counter;
 import java.nio.file.Path;
 
 public class SingleFileRowCounterService implements RowCounterService {
-    private final String fileName;
-    private Integer numberOfRows;
-
-    public SingleFileRowCounterService(String fileName) {
-        this.fileName = fileName;
-    }
 
     @Override
-    public void countRows() {
-        numberOfRows = new RowCounter().countRows(Path.of(fileName));
+    public String countRows(String fileName) {
+        Path file = Path.of(fileName);
+        int numberOfRows = new RowCounter().countRows(file);
+        return String.format("%s : %d", file.getFileName(), numberOfRows);
     }
 
-    @Override
-    public String getFormattedResult() {
-        return String.format("%s : %d", fileName, numberOfRows);
-    }
-
-    public Integer getNumberOfRows() {
-        return numberOfRows;
-    }
 }
