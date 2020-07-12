@@ -43,15 +43,6 @@ class DirectoryRowCounterServiceTest {
     }
 
     @Test
-    @DisplayName("Should return empty response for empty folder")
-    public void countRows_empty_folder() {
-        String root = "src/test/resources/emptyFolder";
-        String actual = directoryRowCounterService.countRows(root);
-
-        assertThat(actual).isEmpty();
-    }
-
-    @Test
     @DisplayName("Should return one row for one file in deep tree")
     public void countRows_tree_folder() {
         String root = "src/test/resources/tree_1_file";
